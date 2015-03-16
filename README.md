@@ -1,3 +1,3 @@
 [Docs](Resources/doc/index.md)
 
-![alt text][Resources/doc/collection.png]
+![binary/pnu-readme-logo.png](Resources/doc/collection.png)
