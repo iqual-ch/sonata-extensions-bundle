@@ -1,0 +1,9 @@
+se_autocomplete:
+    resource: "@SonataExtensionsBundle/Controller/AutocompleteController.php"
+    type:     annotation
+    prefix: /admin
+    
+se_translations:
+    resource: "@SonataExtensionsBundle/Controller/TranslationsController.php"
+    type:     annotation
+    prefix: /admin/_se/

@@ -1,0 +1,5 @@
+validator.translatable.value_required_for_locale: 'Value is required for locale "%locale%"'
+form:
+    label:
+        add_item: Add
+        remove_item: Remove

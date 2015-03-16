@@ -1,0 +1,3 @@
+#twig:
+#    form_themes:
+#        - 'SonataExtensionsBundle:Form:fields.html.twig'

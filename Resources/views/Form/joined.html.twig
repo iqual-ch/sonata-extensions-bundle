@@ -1,0 +1,10 @@
+{% block se_type_joined_widget %}
+    {% set element_wrapper_config = form.vars.element_wrapper_config %}
+    <div class="{{ form.vars.wrapper.class }}">
+    {% for element in form %}
+        <div class="{{ element_wrapper_config[element.vars.name].class }}">
+            {{ form_widget(element) }}
+        </div>
+    {% endfor %}
+    </div>
+{% endblock se_type_joined_widget %}

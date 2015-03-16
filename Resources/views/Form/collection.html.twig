@@ -1,0 +1,92 @@
+{% block se_type_collection_widget %}
+    {# block se_type_collection_header #}
+    {% block se_type_collection_header %}
+    <table class="table table-condensed se-type-collection" id="se-type-collection-{{ form.vars.id }}-table">
+        <thead>
+            {% block se_type_collection_header_row %}
+            <tr>
+                {% for proto in form.vars.prototype %}
+                {% if proto.vars.block_prefixes.1 != 'hidden' %}
+                {% endif %}
+                <td class="{% if proto.vars.block_prefixes.1 == 'hidden' %}hide{% endif %}">{{ form_label(proto) }}</td>
+                {% endfor %}
+                <td class="col-md-1"></td>
+            </tr>
+            {% endblock %}
+        </thead>
+    {% endblock %}
+
+    {# block se_type_collection_body #}
+    {% block se_type_collection_body %}
+    <tbody>
+        {% for subform in form %}
+        {% block se_type_collection_body_row %}
+        <tr>
+            {% if count(subform) > 0 %}
+            {% for element in subform %}
+            <td class="{% if element.vars.block_prefixes.1 == 'hidden' %}hide{% endif %}">{{ form_widget(element) }}</td>
+            {% endfor %}
+            {% else %}
+            <td>{{ block('form_widget_simple', subform) }}</td>
+            {% endif %}
+            <td class="text-right">
+                {% block se_type_collection_body_row_actions %}
+                <button type="button" class="btn btn-danger btn-sm se-btn-remove">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                {% endblock %}
+            </td>
+        </tr>
+        {% endblock %}
+        {% endfor %}
+    </tbody>
+    {% endblock %}
+
+    {# block se_type_collection_footer #}
+    {% block se_type_collection_footer %}
+        <tfoot>
+            {% block se_type_collection_footer_row %}
+            <tr>
+                <td colspan="{{ count(form.vars.prototype) }}">
+                    {# block se_type_collection_footer_buttons #}
+                    {% block se_type_collection_footer_buttons %}
+                        <button type="button" class="btn btn-primary btn-sm se-btn-add">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            {{ form.vars.button_label_add|default('form.label.add_item')|trans }}
+                        </button>
+                    {% endblock %}
+                </td>
+                <td></td>
+            </tr>
+            {% endblock %}
+        </tfoot> 
+    </table>
+    {% endblock %}
+
+    {# block se_type_collection_template #}
+    {% block se_type_collection_template %}
+    <template class="hide" id="se-type-collection-{{ form.vars.id }}-prototype">
+        <tr>
+            {% if count(form.vars.prototype) > 0 %}
+            {% for proto in form.vars.prototype %}
+            <td class="{% if proto.vars.block_prefixes.1 == 'hidden' %}hide{% endif %}">{{ form_widget(proto) }}</td>
+            {% endfor %}
+            {% else %}
+            <td>{{ form_widget(form.vars.prototype) }}</td>
+            {% endif %}
+            <td class="text-right">
+                <button type="button" class="btn btn-danger btn-sm se-btn-remove">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+            </td>
+        </tr>
+    </template>
+    {% endblock %}
+
+    {# block se_type_collection_script #}
+    {% block se_type_collection_script %}
+    <script type="text/javascript">
+        new SonataExtensions.Form.Collection('se-type-collection-{{ form.vars.id }}');
+    </script>
+    {% endblock %}
+{% endblock %}

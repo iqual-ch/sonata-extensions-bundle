@@ -1,0 +1,82 @@
+services:
+    sonataextensions.form.type.title:
+        class: SonataExtensionsBundle\Form\Type\TitleType
+        tags:
+            - { name: form.type, alias: se_type_title }
+            
+    se.form.type.radio_grid:
+        class: SonataExtensionsBundle\Form\Type\RadioGridType
+        tags:
+            - {name: form.type, alias: se_type_radio_grid }
+            
+    se.form.type.translatable:
+        class: SonataExtensionsBundle\Form\Type\TranslatableType
+        arguments:
+            - %locales%
+            - @doctrine.orm.entity_manager
+        tags:
+            - {name: form.type, alias: se_type_translatable }
+            
+    se.form.type.autocomplete:
+        class: SonataExtensionsBundle\Form\Type\AutocompleteType
+        arguments:
+            - @session
+        tags:
+            - {name: form.type, alias: se_type_autocomplete }
+            
+    se.form.type.datepicker:
+        class: SonataExtensionsBundle\Form\Type\DatepickerType
+        tags:
+            - {name: form.type, alias: se_type_datepicker }
+            
+    se.form.type.collection:
+        class: SonataExtensionsBundle\Form\Type\CollectionType
+        arguments:
+            - @sonata.admin.manager.orm
+        tags:
+            - {name: form.type, alias: se_type_collection }
+            
+    se.form.type.file:
+        class: SonataExtensionsBundle\Form\Type\FileType
+        tags:
+            - {name: form.type, alias: se_type_file }
+            
+    se.form.type.image_file:
+        class: SonataExtensionsBundle\Form\Type\ImageFileType
+        tags:
+            - {name: form.type, alias: se_type_image_file }
+            
+    se.form.type.model_file:
+        class: SonataExtensionsBundle\Form\Type\ModelFileType
+        arguments:
+            - @sonata.admin.manager.orm
+        tags:
+            - {name: form.type, alias: se_type_model_file }
+            
+    se.form.type.model_image_file:
+        class: SonataExtensionsBundle\Form\Type\ModelImageFileType
+        tags:
+            - {name: form.type, alias: se_type_model_image_file }
+            
+    se.form.type.joined:
+        class: SonataExtensionsBundle\Form\Type\JoinedType
+        tags:
+            - {name: form.type, alias: se_type_joined }
+            
+    se.form.type.model_autocomplete:
+        class: SonataExtensionsBundle\Form\Type\ModelAutocompleteType
+        arguments:
+            - @session
+            - @sonata.admin.manager.orm
+        tags:
+            - {name: form.type, alias: se_type_model_autocomplete }
+            
+    se.form.type.label:
+        class: SonataExtensionsBundle\Form\Type\LabelType
+        tags:
+            - {name: form.type, alias: se_type_label }
+            
+    se.form.money.label:
+        class: SonataExtensionsBundle\Form\Type\MoneyType
+        tags:
+            - {name: form.type, alias: se_type_money }

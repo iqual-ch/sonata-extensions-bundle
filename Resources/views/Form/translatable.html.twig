@@ -1,0 +1,20 @@
+{% block se_type_translatable_widget %}
+<div class="se-translatable">
+    <div class="clearfix">
+        <ul class="nav nav-tabs pull-right" id="{{ form.vars['id'] }}">
+            {% for locale in form.vars['locales'] %}
+            <li {% if app.request.locale == locale %}class="active"{% endif %}>
+                <a href="#tr-pane-{{ form.vars['id'] }}-{{ locale }}" data-toggle="tab">{{ locale|locale_strip_region }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="tab-content">
+        {% for locale in form.vars['locales'] %}
+        <div class="tab-pane{% if app.request.locale == locale %} active{% endif %}" id="tr-pane-{{ form.vars['id'] }}-{{ locale }}">
+            {{ form_row(form[locale], { 'attr': {'required': form.vars['required']} }) }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock se_type_translatable_widget %}

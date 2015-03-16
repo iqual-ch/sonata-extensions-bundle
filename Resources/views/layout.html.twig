@@ -1,0 +1,69 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block meta_tags %}
+    {{ parent() }}
+    {% if app.environment == 'dev' %}
+    <base href="/app_dev.php/">
+    {% else %}
+    <base href="/">
+    {% endif %}
+{% endblock meta_tags %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 
+        '@SonataExtensionsBundle/Resources/public/css/styles.less' 
+        filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        '@SonataExtensionsBundle/Resources/public/js/vendor/Class.js' 
+        '@SonataExtensionsBundle/Resources/public/js/vendor/jquery.maskMoney.min.js' 
+        '@SonataExtensionsBundle/Resources/public/js/vendor/accounting.min.js' 
+        '@SonataExtensionsBundle/Resources/public/js/*' 
+        '@SonataExtensionsBundle/Resources/public/js/*/*' 
+        '@SonataExtensionsBundle/Resources/public/js/*/*/*' 
+        '@SonataExtensionsBundle/Resources/public/js/*/*/*/*' 
+        '@SonataExtensionsBundle/Resources/public/js/*/*/*/*/*' 
+         %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    <script type="text/javascript" src="{{ path('se_frontend_translations') }}"></script>
+    {% if app.request.locale|locale_strip_region != 'en' %}
+    <script 
+        type="text/javascript" 
+        src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.' ~ app.request.locale|locale_strip_region ~ '.js') }}">
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block se_page_header %}
+    {% if admin.getPageHeader is defined %}
+    <div class="page-header">{{ admin.getPageHeader }}</div>
+    {% endif %}
+{% endblock se_page_header %}
+
+{% block sonata_wrapper %}
+    {{ parent() }}
+    <script>
+        SonataExtensions.Form.GlobalFormElements.initAll();
+    </script>
+    {% if admin.getJsControllers is defined %}
+        {% set jsControllers = admin.getJsControllers %}
+        {% set route = app.request.get('_route') %}
+        {% set routeParams = app.request.get('_route_params') %}
+        
+        {% if jsControllers[route] is defined %}
+            <script type="text/javascript">
+                $(function () {
+                    new {{ jsControllers[route] }}({{ routeParams|json_encode|raw }});
+                });
+            </script>
+        {% endif %}
+    {% endif %}
+{% endblock sonata_wrapper %}

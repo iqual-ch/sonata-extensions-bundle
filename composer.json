@@ -1,0 +1,7 @@
+{
+    "name": "mpom/sonata-extensions-bundle",
+    "type": "library",
+    "require": {
+        "egeloen/ckeditor-bundle": "*"
+    }
+}

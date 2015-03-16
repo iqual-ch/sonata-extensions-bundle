@@ -1,0 +1,29 @@
+{% block se_type_image_file_widget %}
+{% set placeholder = asset('bundles/sonataextensions/img/image-placeholder-md.png') %}
+{% set image = placeholder %}
+{% set title = '' %}
+{% set object_bound = false %}
+{% if form.parent.vars.value != null %}
+    {% set image = form.parent.vars.value.getDisplayPath %}
+    {% set title = form.parent.vars.value.getOriginalName %}
+    {% set object_bound = true %}
+{% endif %}
+<div class="clearfix se-type-image-file">
+    <div class="col-md-4 se-preview">
+        <div class="thumbnail">
+            <img src="{{ image }}" />
+        </div>
+    </div>
+    <div class="col-md-8 se-input">
+        {% if object_bound %}
+        <span>{{ title|truncate }}</span>
+        {% else %}
+        {{ form_widget(form) }}
+        {% endif %}
+    </div>
+</div>
+{% endblock se_type_image_file_widget %}
+
+{% block se_type_model_image_file_widget %}
+{{ form_widget(form) }}
+{% endblock se_type_model_image_file_widget %}

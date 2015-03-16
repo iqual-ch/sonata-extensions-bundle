@@ -1,0 +1,16 @@
+services:
+    gedmo.listener.translatable:
+        class: Gedmo\Translatable\TranslatableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
+            - [ setTranslationFallback, [ false ] ]
+            
+    doctine_extension.listener:
+        class: SonataExtensionsBundle\EventListener\DoctrineExtensionListener
+        calls:
+            - [ setContainer, [ @service_container ] ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }

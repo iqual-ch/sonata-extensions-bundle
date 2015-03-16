@@ -1,0 +1,25 @@
+{% block se_type_radio_grid_widget %}
+{% if form.vars.title %}
+<label class="control-label col-sm-3">{{ form.vars.title|trans }}</label>
+{% endif %}
+<table class="table table-condensed se-type-radio-grid">
+    <thead>
+        <tr>
+            <th></th>
+            {% for skill in form.vars['columns'] %}
+            <th>{{ skill|trans }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for key, value in form.vars['rows'] %}
+        <tr>
+            <th>{{ value|trans }}</th>
+            {% for item in form %}
+            <td>{{ form_widget(form[key][loop.index - 1]) }}</td>
+            {% endfor %}    
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock se_type_radio_grid_widget %}

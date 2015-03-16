@@ -1,0 +1,44 @@
+{% block side_bar_nav %}
+    {% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}
+        <ul class="sidebar-menu">
+            {% for group in admin_pool.dashboardgroups %}
+                {% set label = group.label %}
+                {% set groupactive = false %}
+                {% set group_has_items = false %}
+                {% for admin in group.items %}
+                    {% if app.request.get('_sonata_admin') matches '/' ~ admin.getcode ~ '/' %}
+                        {% set groupactive = true %}
+                    {% endif %}
+                    {% if admin.getLeftMenu is defined %}
+                        {% set group_has_items = true %}
+                    {% endif %}
+                {% endfor %}
+                
+                {# group has admin instances #}
+                {% if group_has_items %}
+                <li class="treeview {% if groupactive %}active{% endif %}">
+                    <a href="#">
+                        {% if group.icon|default() %}{{ group.icon|raw }}{% endif %}
+                        <span>{{ group.label|trans({}, group.label_catalogue) }}</span>
+                        <i class="fa pull-right fa-angle-left"></i>
+                    </a>
+
+                    <ul class="treeview-menu">
+                    {% for admin in group.items %}
+                        {% for menulabel, menuitem in admin.getLeftMenu.children %}
+                            <li{% if app.request.get('_route') == menuitem.extras['routes'][0]['route'] %} class="active"{% endif %}>
+                                <a href="{{ menuitem.geturi }}">
+                                    <i class="fa fa-angle-double-right"></i> 
+                                    {{ menulabel|trans({}, admin.translationdomain) }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                    
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock side_bar_nav %}

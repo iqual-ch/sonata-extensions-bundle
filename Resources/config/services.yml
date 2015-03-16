@@ -1,0 +1,9 @@
+services:
+    se.twig.extensions.regex:
+        class: SonataExtensionsBundle\Twig\RegexExtension
+        tags:
+            - { name: twig.extension }
+    se.twig.extensions.integer:
+        class: SonataExtensionsBundle\Twig\IntegerExtension
+        tags:
+            - { name: twig.extension }

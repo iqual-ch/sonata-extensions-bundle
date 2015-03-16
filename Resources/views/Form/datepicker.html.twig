@@ -1,0 +1,28 @@
+{% block se_type_datepicker_widget %}
+    {% set options = form.vars.options %}
+    {% if options.language is not defined %}
+        {% set options = options|merge({'language': app.request.locale}) %}
+    {% endif %}
+    
+    <div class="input-group">
+        {{ form_widget(form) }}
+        <span class="input-group-addon se-dp-{{ form.vars.id }}"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+    <link type="text/css" type="text/css" rel="stylesheet" 
+        href="{{ asset('bundles/sonataextensions/vendor/bootstrap-datepicker-1.3.1/css/datepicker3.css') }}" />
+    <script type="text/javascript" 
+        src="{{ asset('bundles/sonataextensions/vendor/bootstrap-datepicker-1.3.1/js/bootstrap-datepicker.js') }}">
+    </script>
+    {% if app.request.locale != 'en' %}
+    <script type="text/javascript" 
+        src="{{ asset('bundles/sonataextensions/vendor/bootstrap-datepicker-1.3.1/js/locales/bootstrap-datepicker.' ~ options.language ~ '.js') }}">
+    </script>
+    {% endif %}
+    <script>
+        $('#{{ form.vars.id }}').datepicker({{ options|json_encode|raw }});
+        
+        $('.se-dp-{{ form.vars.id }}').on('click', function () {
+            $('#{{ form.vars.id }}').datepicker('show');
+        });
+    </script>
+{% endblock se_type_datepicker_widget %}

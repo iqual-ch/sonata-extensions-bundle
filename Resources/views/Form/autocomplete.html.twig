@@ -1,0 +1,11 @@
+{% block se_type_autocomplete_widget %}
+    {{ form_widget(form) }}
+    <script type="text/javascript">
+        new SonataExtensions.Form.Autocomplete({
+            id: '{{ form.vars.id }}',
+            url: '{{ path('se_autocomplete_suggest') }}',
+            key: '{{ form.vars.key }}',
+            minLength: {{ form.vars.min_length }}
+        });
+    </script>
+{% endblock se_type_autocomplete_widget %}

@@ -1,0 +1,16 @@
+{% block se_type_file_widget %}
+{% if form.parent.vars.value %}
+    {% if form.vars.allow_change %}
+    {{ form_widget(form) }}
+    {% endif %}
+    <div class="se-type-file-current-file">
+    {{ form.parent.vars.value.getOriginalName }}
+    </div>
+{% else %}
+{{ form_widget(form) }}
+{% endif %}
+{% endblock se_type_file_widget %}
+
+{% block se_type_model_file_widget %}
+{{ form_widget(form) }}
+{% endblock se_type_model_file_widget %}
