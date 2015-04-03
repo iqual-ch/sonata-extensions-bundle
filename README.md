@@ -1,0 +1,1 @@
+![MY_COOL_IMAGE](Resources/doc/collection.png)
