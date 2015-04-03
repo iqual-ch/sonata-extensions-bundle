@@ -1,3 +1,6 @@
+# SunataExtensionsBundle
+Provides common additions to Symfony.
+
 # Installation
 
 ```bash
