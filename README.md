@@ -1,3 +1,3 @@
 ![Resources/doc/collection.png](Resources/doc/collection.png)
 
-[Docs](modification/Resources/doc/index.md)
+[Docs](Resources/doc/index.md)
