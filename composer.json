@@ -17,6 +17,9 @@
     "scripts": {
         "post-install-cmd": [
             "SonataExtensionsBundle\\Distribution\\ScriptHandler::notifyAboutAssetic"
+        ],
+        "post-update-cmd": [
+            "SonataExtensionsBundle\\Distribution\\ScriptHandler::notifyAboutAssetic"
         ]
     }
 }
