@@ -2,7 +2,7 @@
     "name": "mpom/sonata-extensions-bundle",
     "type": "library",
     "autoload": {
-        "psr-4": { "SonataExtensionsBundle\\": "src/" }
+        "psr-4": { "SonataExtensionsBundle\\": "" }
     },
     "require": {
         "symfony/symfony": "2.6.*",
