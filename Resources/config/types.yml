@@ -1,3 +1,6 @@
+parameters:
+    se.form.type.money.class: SonataExtensionsBundle\Form\Type\MoneyType
+
 services:
     sonataextensions.form.type.title:
         class: SonataExtensionsBundle\Form\Type\TitleType
@@ -76,7 +79,7 @@ services:
         tags:
             - {name: form.type, alias: se_type_label }
             
-    se.form.money.label:
-        class: SonataExtensionsBundle\Form\Type\MoneyType
+    se.form.type.money:
+        class: %se.form.type.money.class%
         tags:
             - {name: form.type, alias: se_type_money }

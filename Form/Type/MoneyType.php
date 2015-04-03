@@ -20,6 +20,7 @@ class MoneyType extends AbstractType
     {
         $view->vars['currency'] = $options['currency'];
         $view->vars['attr'] = array_replace_recursive($this->getDefaults()['attr'], $view->vars['attr']);
+        $view->vars['attr']['required'] = $options['required'];
     }
     
     public function getParent()
@@ -44,7 +45,7 @@ class MoneyType extends AbstractType
             'money_pattern' => '{{ widget }}',
         );
         
-        $defaults = array_replace_recursive($defaults, array(
+        return array_replace_recursive($defaults, array(
             'attr' => array(
                 'data-type' => 'money',
                 'data-precision' => $defaults['precision'],
@@ -52,7 +53,6 @@ class MoneyType extends AbstractType
                 'data-thousands' => $formatter->getSymbol(NumberFormatter::GROUPING_SEPARATOR_SYMBOL),
             )
         ));
-        return $defaults;
     }
 
 }

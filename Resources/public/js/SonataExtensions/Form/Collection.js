@@ -18,7 +18,8 @@ SonataExtensions.Form.Collection = SonataExtensions.FormElement.extend({
             self.addRow();
         });
         this.table.on('click', this.buttonRemove, function () {
-            self.removeRow($(this));
+            var index = $(this).closest('tr').prevAll().size();
+            self.removeRow(index);
         });
     },
     
@@ -33,10 +34,14 @@ SonataExtensions.Form.Collection = SonataExtensions.FormElement.extend({
         return row;
     },
     
-    removeRow: function (button) {
-        button.closest('tr').remove();
+    removeRow: function (index, addEmpty) {
+        var addEmpty = addEmpty || true;
+        this.table.find('tbody tr').eq(index).remove();
         this.event.trigger(SonataExtensions.Form.Collection.Events.ROW_REMOVED, [this]);
-        this.insertNewRowIfNoneLeft();
+        
+        if (addEmpty) {
+            this.insertNewRowIfNoneLeft();
+        }
     },
     
     insertNewRowIfNoneLeft: function() {

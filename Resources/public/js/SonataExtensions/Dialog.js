@@ -35,5 +35,6 @@ SonataExtensions.Dialog = SonataExtensions.Class.extend({
 });
 SonataExtensions.Dialog.Events = {
     HIDE: 'se-dialog.hide',
-    SHOW: 'se-dialog.show'
+    SHOW: 'se-dialog.show',
+    ERROR: 'se-dialog.error'
 };
