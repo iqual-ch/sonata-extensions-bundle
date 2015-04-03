@@ -1,6 +1,9 @@
 {
     "name": "mpom/sonata-extensions-bundle",
     "type": "library",
+    "autoload": {
+        "psr-4": { "SonataExtensionsBundle\\": "src/" }
+    },
     "require": {
         "symfony/symfony": "2.6.*",
         "egeloen/ckeditor-bundle": "*",
