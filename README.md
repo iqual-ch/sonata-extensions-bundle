@@ -1,3 +1,1 @@
-[Docs](Resources/doc/index.md)
-
-![Resources/doc/collection.png](Resources/doc/collection.png)
+See Resources/doc/index.md for documentation.
