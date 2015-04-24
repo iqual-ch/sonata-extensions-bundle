@@ -6,7 +6,6 @@
     },
     "require": {
         "symfony/symfony": "2.6.*",
-        "egeloen/ckeditor-bundle": "*",
         "gedmo/doctrine-extensions": "~2.3@dev",
         "symfony/assetic-bundle": "~2.3",
         "doctrine/orm": "~2.2,>=2.2.3",
