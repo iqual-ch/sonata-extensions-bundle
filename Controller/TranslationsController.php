@@ -21,8 +21,8 @@ class TranslationsController extends Controller
         $translator = $this->get('translator');
         $content = 'var _TRANSLATIONS = ' . json_encode($translator->getMessages()['javascript']);
         
-        $response = new Response;
-        $response->setContent($content);
-        return $response;
+        return new Response($content, 200, array(
+            'Content-Type' => 'application/javascript'
+        ));
     }
 }

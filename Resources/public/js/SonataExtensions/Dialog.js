@@ -22,13 +22,15 @@ SonataExtensions.Dialog = SonataExtensions.Class.extend({
         this.instance.on('shown.bs.modal', function () {
             self.event.trigger(SonataExtensions.Dialog.Events.SHOW);
         });
+        
+        var instance = this.instance;
         this.instance.on('hidden.bs.modal', function () {
             self.hide();
+            instance.remove();
         });
     },
     hide: function () {
         this.instance.modal('hide');
-        this.instance.remove();
         this.instance = null;
         this.event.trigger(SonataExtensions.Dialog.Events.HIDE, [this]);
     }
