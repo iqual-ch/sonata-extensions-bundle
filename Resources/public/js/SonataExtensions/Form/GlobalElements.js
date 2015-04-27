@@ -3,6 +3,10 @@ SonataExtensions.Form.GlobalFormElements = {
         this.initMoney();
     },
     initMoney: function () {
-        $(document).find('[data-type="money"]').maskMoney();
+        $(document).find('[data-type="money"]').autoNumeric('init', {
+            aSep: "'",
+            aPad: false,
+            lZero: 'deny'
+        });
     }
 };
