@@ -2,12 +2,16 @@ SonataExtensions.Form.Collection = SonataExtensions.FormElement.extend({
     name: null,
     buttonAdd: null,
     buttonRemove: null,
+    addEmpty: null,
     table: null,
     prototype: null,
     
-    init: function (name) {
+    init: function (name, addEmpty) {
         this._super(name);
         this.name = name;
+        
+        this.addEmpty = addEmpty == undefined ? true : addEmpty;
+        
         this.table = $('#' + name + '-table');
         this.buttonAdd = '.se-btn-add';
         this.buttonRemove = '.se-btn-remove';
@@ -30,12 +34,16 @@ SonataExtensions.Form.Collection = SonataExtensions.FormElement.extend({
 
         table.find('tbody').append(row);
         Admin.setup_icheck();
+        Admin.setup_select2();
         this.event.trigger(SonataExtensions.Form.Collection.Events.ROW_ADDED, [this, row]);
         return row;
     },
     
     removeRow: function (index, addEmpty) {
-        var addEmpty = addEmpty || true;
+        if (addEmpty === undefined) {
+            addEmpty = this.addEmpty;
+        }
+        
         this.table.find('tbody tr').eq(index).remove();
         this.event.trigger(SonataExtensions.Form.Collection.Events.ROW_REMOVED, [this]);
         
