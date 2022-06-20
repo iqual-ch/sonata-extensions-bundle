@@ -12,13 +12,5 @@
         "doctrine/doctrine-bundle": "~1.2",
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "SonataExtensionsBundle\\Distribution\\ScriptHandler::notifyAboutAssetic"
-        ],
-        "post-update-cmd": [
-            "SonataExtensionsBundle\\Distribution\\ScriptHandler::notifyAboutAssetic"
-        ]
     }
 }
